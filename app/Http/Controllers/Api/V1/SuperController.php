@@ -61,14 +61,6 @@ class SuperController extends Controller
     public function all()
     {
         $authUser = Auth::user();
-//        if ($this->constant_exists($this->whichModel, 'PERMISSIONSLUG')) {
-//
-//            $permissionSlug = $this->whichModel::PERMISSIONSLUG;
-//
-//            if (!$authUser->can('view-' . $permissionSlug)) {
-//                throw new AccessDeniedException('unauthorized_access');
-//            }
-//        }
         $all = $this->whichModel::initializer()->get();
 
         return $this->responseResource::collection($all)
@@ -81,7 +73,7 @@ class SuperController extends Controller
     {
         $authUser = Auth::user();
         $permissionSlug = $this->whichModel::PERMISSIONSLUG;
-        if (!$authUser->can('view-' . $permissionSlug)) {
+        if (!$authUser->can('export-' . $permissionSlug)) {
             throw new AccessDeniedException('unauthorized_access');
         }
         $rowsPerPage = $request->get('rowsPerPage') ? $request->get('rowsPerPage') : 10;
@@ -127,7 +119,7 @@ class SuperController extends Controller
     {
         $authUser = Auth::user();
         $permissionSlug = $this->whichModel::PERMISSIONSLUG;
-        if (!$authUser->can('manage-' . $permissionSlug)) {
+        if (!$authUser->can('create-' . $permissionSlug)) {
             throw new AccessDeniedException('unauthorized_access');
         }
         DB::beginTransaction();
@@ -176,7 +168,7 @@ dd($e);
     {
         $authUser = Auth::user();
         $permissionSlug = $this->whichModel::PERMISSIONSLUG;
-        if (!$authUser->can('manage-' . $permissionSlug)) {
+        if (!$authUser->can('update-' . $permissionSlug)) {
             throw new AccessDeniedException('unauthorized_access');
         }
         DB::beginTransaction();
@@ -209,7 +201,7 @@ dd($e);
         $authUser = Auth::user();
 
         $permissionSlug = $this->whichModel::PERMISSIONSLUG;
-        if (!$authUser->can('manage-' . $permissionSlug)) {
+        if (!$authUser->can('delete-' . $permissionSlug)) {
             throw new AccessDeniedException('unauthorized_access');
         }
         $itemsToDelete = $request->get('delete_rows');

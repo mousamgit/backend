@@ -35,6 +35,7 @@ class RoleController  extends SuperController
      */
     public function store(RoleRequest $request)
     {
+        
         return parent::storeFunction($request);
     }
 
