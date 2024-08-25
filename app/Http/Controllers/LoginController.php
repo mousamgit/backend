@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function userDashboard()
 
     {
-
+       
         $users = User::all();
 
         $success =  $users;
@@ -48,7 +48,7 @@ class LoginController extends Controller
     public function userLogin(Request $request)
 
     {
-
+      
         $this->validate($request,[
 
             'username' => 'required',
@@ -84,7 +84,7 @@ class LoginController extends Controller
     public function adminLogin(Request $request)
 
     {
-
+       
         $validator = Validator::make($request->all(), [
 
             'email' => 'required|email',

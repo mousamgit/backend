@@ -14,7 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, CRUD, HasRoles;
+    use  HasFactory, Notifiable, CRUD, HasRoles;
     /**
      * The attributes that are mass assignable.
      *
@@ -58,9 +58,9 @@ class User extends Authenticatable
 
     protected static function booted()
     {
-        static::addGlobalScope('admin_user', function (Builder $builder) {
+        // static::addGlobalScope('admin_user', function (Builder $builder) {
 
-        });
+        // });
     }
 
 
