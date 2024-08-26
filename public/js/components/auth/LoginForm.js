@@ -1,27 +1,51 @@
 export default {
     template: `
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <h2>Login</h2>
-                    <form @submit.prevent="submitLogin">
-                        <div class="form-group">
-                            <label>Username:</label>
-                            <input type="text" v-model="name" class="form-control" required>
+   
+    <div class="form-body without-side">
+         <div class="website-logo">
+            <a href="">
+                <div class="logo">
+                    <img class="logo-size" src="/auth/logo-light.svg" alt="">
+                </div>
+            </a>
+        </div>
+        <div class="iofrm-layout">
+             <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <img src="/auth/graphic.svg" alt="">
+                </div>
+            </div>
+             
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Login to account</h3>
+                        <p>Enter Username and Password To Login.</p>
+                        <form @submit.prevent="submitLogin" >
+                            <input class="form-control" type="text" v-model="name" placeholder="Username" required>
+                            <input class="form-control" type="password" v-model="password" placeholder="Password" required>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Login</button> <a href="/forgot-password">Forget password?</a>
+                            </div>
+                        </form>
+                        <div class="other-links social-with-title">
+                            <div class="text">Or login with</div>
+                            <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a><a href="#">
+                            <i class="fab fa-google"></i>Google</a><a href="#">
+                            <i class="fab fa-linkedin-in"></i>Linkedin</a>
                         </div>
-                        <div class="form-group">
-                            <label>Password:</label>
-                            <input type="password" v-model="password" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3">Login</button>
-                    </form>
+                        
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+  
     `,
     data() {
         return {
-            email: '',
+            name: '',
             password: '',
             error: null,
         };
@@ -40,7 +64,7 @@ export default {
                         password: this.password,
                     })
                 });
-
+            
                 if (response.ok) {
                     window.location.href = '/dashboard';
                 } else {

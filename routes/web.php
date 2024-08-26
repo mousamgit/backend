@@ -19,7 +19,11 @@ Route::get('/login', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('dashboard');
+})->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
